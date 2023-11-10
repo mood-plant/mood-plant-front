@@ -1,10 +1,12 @@
 import React from 'react';
 import MainContent from '../components/Main/MainContent';
 import styled from 'styled-components';
+import Header from '../components/Common/Header';
 
 export default function Main() {
   return (
     <S.Layout>
+      <Header number='0' />
       <MainContent />
     </S.Layout>
   );
@@ -15,6 +17,6 @@ const S = {
     /* margin-top: 10%; */
 
     width: 100%;
-    height: 100vh;
+    height: 100%;
   `,
 };

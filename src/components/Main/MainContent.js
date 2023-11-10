@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { postLink } from '../../api/Main/postLink';
 import { useNavigate } from 'react-router-dom';
+import Cards from './Cards';
 
 export default function MainContent() {
   const [link, setLink] = useState('');
@@ -49,10 +50,19 @@ export default function MainContent() {
         component='h3'
         sx={{
           fontWeight: 700,
-          marginBottom: '160px',
+          marginBottom: '10px',
         }}
       >
-        웹 사이트 링크를 넣어주세요!
+        내 공간을 더 특별하게
+      </Typography>
+      <Typography
+        variant='subtitle1'
+        component='div'
+        sx={{ fontWeight: 500, marginBottom: '100px' }}
+      >
+        감성플랜트는 당신의 공간에 최적화된 조경식물들을 제안합니다.
+        <br />
+        플렌테리어를 통해 공간을 업그레이드하고 더 많은 방문객들을 모으세요.
       </Typography>
 
       <div>
@@ -82,6 +92,10 @@ export default function MainContent() {
           시작하기
         </Button>
       </div>
+
+      <S.CardLayout>
+        <Cards />
+      </S.CardLayout>
     </S.Layout>
   );
 }
@@ -92,5 +106,11 @@ const S = {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+
+    margin-top: 45px;
+  `,
+
+  CardLayout: styled.div`
+    margin-top: 45px;
   `,
 };
