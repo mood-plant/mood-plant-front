@@ -1,8 +1,8 @@
 import api from '../api';
 
-export const postLink = (url) => {
+export const postLink = async (url) => {
   try {
-    const res = api.post('/api/analyze', {
+    const res = await api.post('/api/analyze', {
       link: url,
     });
 
