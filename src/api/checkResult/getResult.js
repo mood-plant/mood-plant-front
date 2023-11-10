@@ -1,8 +1,8 @@
 import api from '../api';
 
-export const getResult = (url) => {
+export const getResult = async (url) => {
   try {
-    const res = api.get(url);
+    const res = await api.get(url);
 
     if (res.statusCode === 200) {
       const data = res.data;

@@ -13,23 +13,20 @@ import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
-    <>
-      <Toaster />
-      <StyledEngineProvider injectFirst>
-        <ThemeProvider theme={theme}>
-          <div className="App">
-            <Routes>
-              <Route path={"/selectItem"} element={<SelectItem />} />
-              <Route path={"/"} element={<Main />} />
-              <Route path={"/checkResult"} element={<CheckResult />} />
-              <Route path={"/complete"} element={<Complete />} />
-              <Route path={"/credit"} element={<Credit />} />
-              <Route path={"/loading"} element={<Loading />} />
-            </Routes>
-          </div>
-        </ThemeProvider>
-      </StyledEngineProvider>
-    </>
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={theme}>
+        <div className="App">
+          <Routes>
+            <Route path={"/selectItem"} element={<SelectItem />} />
+            <Route path={"/"} element={<Main />} />
+            <Route path={"/checkResult"} element={<CheckResult />} />
+            <Route path={"/complete"} element={<Complete />} />
+            <Route path={"/credit"} element={<Credit />} />
+            <Route path={"/loading"} element={<Loading />} />
+          </Routes>
+        </div>
+      </ThemeProvider>
+    </StyledEngineProvider>
   );
 }
 

@@ -1,9 +1,9 @@
 import api from '../api';
 
-export const putTags = (data) => {
+export const putTags = async (data, url) => {
   // console.log(data);
   try {
-    const res = api.put('/api/analyze', {
+    const res = await api.put(url, {
       data,
     });
 

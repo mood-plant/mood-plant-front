@@ -1,13 +1,13 @@
 import api from '../api';
 
-export const postLink = (url) => {
+export const postLink = async (url) => {
   try {
-    const res = api.post('/api/analyze', {
+    const res = await api.post('/api/analyze', {
       link: url,
     });
 
     if (res.statusCode === 201) {
-      return res.headers['Location'];
+      return res;
     }
   } catch (err) {
     throw err;
