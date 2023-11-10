@@ -2,11 +2,18 @@ import styled from "styled-components";
 import right from "../../assets/Header/right.png";
 import close from "../../assets/Header/close.png";
 import logo from "../../assets/Header/logo.png";
+import { useNavigate } from "react-router-dom";
 
 export default function Header({ number }) {
+  const navigate = useNavigate();
+
+  const navigateHome = () => {
+    navigate("/");
+  };
+
   return (
     <S.Container>
-      <S.Logo src={logo} />
+      <S.Logo src={logo} onClick={navigateHome} />
       <S.ProgressContainer>
         <S.Progress highlight={number === "1"}>결과 확인</S.Progress>
         <S.Arrow src={right} />
@@ -14,7 +21,7 @@ export default function Header({ number }) {
         <S.Arrow src={right} />
         <S.Progress highlight={number === "3"}>확인 및 결제</S.Progress>
       </S.ProgressContainer>
-      <S.Close src={close} />
+      <S.Close src={close} onClick={navigateHome} />
     </S.Container>
   );
 }
@@ -30,6 +37,7 @@ const S = {
   `,
   Logo: styled.img`
     width: 120px;
+    cursor: pointer;
   `,
   ProgressContainer: styled.div`
     display: flex;
@@ -47,5 +55,6 @@ const S = {
   Close: styled.img`
     width: 30px;
     padding-left: 90px;
+    cursor: pointer;
   `,
 };
