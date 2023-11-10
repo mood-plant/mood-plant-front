@@ -2,32 +2,41 @@ import styled from "styled-components";
 import appLogo from "../../assets/Credit/appLogo.png";
 import arrow from "../../assets/Credit/down.png";
 import check from "../../assets/Credit/check.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Toaster, toast } from "react-hot-toast";
 
 const Service = () => {
   const [checked, setChecked] = useState(false);
   const navigateToExternalURL = () => {
     window.location.href = "https://geekfriends.co.kr/";
   };
-
+  useEffect(() => {
+    if (checked) {
+      toast.success("관리 서비스가 추가되었습니다.", {
+        position: "bottom-center",
+      });
+    }
+  }, [checked]);
   return (
-    <Container>
-      <BG>
-        <Header>
-          <Logo src={appLogo} />
-          <Title>플랜테리어 3개월 관리 서비스</Title>
-          <Plus onClick={() => setChecked(!checked)}>
-            추가 {checked ? <Check src={check} /> : "+"}
-          </Plus>
-        </Header>
-        <Summary>
-          3개월 동안 습도관리 시스템소프트웨어를 통해 효율적으로 관리하세요.
-        </Summary>
-        <More onClick={navigateToExternalURL}>
-          더 알아보기 <DecreasArrow src={arrow} />
-        </More>
-      </BG>
-    </Container>
+    <>
+      <Container>
+        <BG>
+          <Header>
+            <Logo src={appLogo} />
+            <Title>플랜테리어 3개월 관리 서비스</Title>
+            <Plus onClick={() => setChecked(!checked)}>
+              추가 {checked ? <Check src={check} /> : "+"}
+            </Plus>
+          </Header>
+          <Summary>
+            3개월 동안 습도관리 시스템소프트웨어를 통해 효율적으로 관리하세요.
+          </Summary>
+          <More onClick={navigateToExternalURL}>
+            더 알아보기 <DecreasArrow src={arrow} />
+          </More>
+        </BG>
+      </Container>
+    </>
   );
 };
 
