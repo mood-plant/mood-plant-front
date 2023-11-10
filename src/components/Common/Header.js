@@ -40,7 +40,7 @@ const S = {
     justify-content: space-between;
     padding-left: 48px;
     padding-right: 48px;
-    padding-top: 25px;
+    padding-top: 10px;
   `,
   Logo: styled.img`
     width: 120px;
@@ -50,7 +50,7 @@ const S = {
     width: 100vw;
     height: 1px;
     background-color: #a6c3b1;
-    margin-top: 25px;
+    margin-top: 10px;
   `,
   ProgressContainer: styled.div`
     display: flex;
