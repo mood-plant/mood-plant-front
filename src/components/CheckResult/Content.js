@@ -9,11 +9,15 @@ import {
 import { useEffect, useState } from 'react';
 import { putTags } from '../../api/checkResult/putTags';
 import { getResult } from '../../api/checkResult/getResult';
+import Loading from '../Common/Loading';
+import Header from '../Common/Header';
 
 export default function Content() {
   const navigate = useNavigate();
   const location = useLocation();
   const url = location.state?.url;
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const [originData, setOriginData] = useState({
     keywords: [],
@@ -22,8 +26,12 @@ export default function Content() {
   });
 
   useEffect(() => {
+    setIsLoading(true);
+
     const getData = async () => {
       const data = await getResult(url);
+
+      setIsLoading(false);
 
       setOriginData({
         keywords: data.keywords,
@@ -118,98 +126,107 @@ export default function Content() {
   };
 
   return (
-    <S.Layout>
-      <Typography
-        variant='h4'
-        component='h4'
-        sx={{ fontWeight: 700, marginBottom: '10px' }}
-      >
-        웹 사이트 탐색 완료!
-      </Typography>
-      <Typography
-        variant='subtitle1'
-        component='div'
-        sx={{ fontWeight: 400, marginBottom: '25px', color: '#636363' }}
-      >
-        목적에 맞게 결과를 수정해주세요.
-      </Typography>
+    <>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <>
+          <Header number='1' />
+          <S.Layout>
+            <Typography
+              variant='h4'
+              component='h4'
+              sx={{ fontWeight: 700, marginBottom: '10px' }}
+            >
+              웹 사이트 탐색 완료!
+            </Typography>
+            <Typography
+              variant='subtitle1'
+              component='div'
+              sx={{ fontWeight: 400, marginBottom: '25px', color: '#636363' }}
+            >
+              목적에 맞게 결과를 수정해주세요.
+            </Typography>
 
-      <S.Container>
-        <S.Option>
-          <S.Label>키워드*</S.Label>
-          <Autocomplete
-            multiple
-            id='tags-keywords'
-            options={spaceConditionKeywords}
-            getOptionLabel={(option) => option.ko}
-            value={selectedKeywords}
-            onChange={handleKeywordsChange}
-            filterSelectedOptions
-            sx={{ width: '100%' }}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                placeholder='키워드검색'
-                error={!!keywordError}
-                helperText={keywordError}
-              />
-            )}
-          />
-        </S.Option>
-        <S.Option>
-          <S.Label>캐릭터</S.Label>
-          <Autocomplete
-            multiple
-            id='tags-characters'
-            options={voiceToneKeywords}
-            getOptionLabel={(option) => option.ko}
-            value={selectedCharacters}
-            onChange={handleCharactersChange}
-            filterSelectedOptions
-            sx={{ width: '100%' }}
-            renderInput={(params) => (
-              <TextField {...params} placeholder='캐릭터검색' />
-            )}
-          />
-        </S.Option>
-        <S.Option>
-          <S.Label>테마</S.Label>
-          <Autocomplete
-            multiple
-            id='tags-themes'
-            options={themeKeywords}
-            getOptionLabel={(option) => option.ko}
-            value={selectedThemes}
-            onChange={handleThemesChange}
-            filterSelectedOptions
-            sx={{ width: '100%' }}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                placeholder='테마검색'
-                error={!!themeError}
-                helperText={themeError}
-              />
-            )}
-          />
-        </S.Option>
-      </S.Container>
+            <S.Container>
+              <S.Option>
+                <S.Label>키워드*</S.Label>
+                <Autocomplete
+                  multiple
+                  id='tags-keywords'
+                  options={spaceConditionKeywords}
+                  getOptionLabel={(option) => option.ko}
+                  value={selectedKeywords}
+                  onChange={handleKeywordsChange}
+                  filterSelectedOptions
+                  sx={{ width: '100%' }}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      placeholder='키워드검색'
+                      error={!!keywordError}
+                      helperText={keywordError}
+                    />
+                  )}
+                />
+              </S.Option>
+              <S.Option>
+                <S.Label>캐릭터</S.Label>
+                <Autocomplete
+                  multiple
+                  id='tags-characters'
+                  options={voiceToneKeywords}
+                  getOptionLabel={(option) => option.ko}
+                  value={selectedCharacters}
+                  onChange={handleCharactersChange}
+                  filterSelectedOptions
+                  sx={{ width: '100%' }}
+                  renderInput={(params) => (
+                    <TextField {...params} placeholder='캐릭터검색' />
+                  )}
+                />
+              </S.Option>
+              <S.Option>
+                <S.Label>테마</S.Label>
+                <Autocomplete
+                  multiple
+                  id='tags-themes'
+                  options={themeKeywords}
+                  getOptionLabel={(option) => option.ko}
+                  value={selectedThemes}
+                  onChange={handleThemesChange}
+                  filterSelectedOptions
+                  sx={{ width: '100%' }}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      placeholder='테마검색'
+                      error={!!themeError}
+                      helperText={themeError}
+                    />
+                  )}
+                />
+              </S.Option>
+            </S.Container>
 
-      <Button
-        onClick={handleSubmit}
-        variant='contained'
-        color='primary'
-        sx={{
-          height: '55px',
-          width: '300px',
-          fontSize: '20px',
-          marginTop: '25px',
-          borderRadius: '20px',
-        }}
-      >
-        수정 완료
-      </Button>
-    </S.Layout>
+            <Button
+              onClick={handleSubmit}
+              variant='contained'
+              color='primary'
+              sx={{
+                height: '55px',
+                width: '300px',
+                fontSize: '20px',
+                marginTop: '25px',
+                borderRadius: '20px',
+              }}
+            >
+              수정 완료
+            </Button>
+          </S.Layout>
+        </>
+      )}
+    </>
   );
 }
 
@@ -244,6 +261,6 @@ const S = {
     flex-direction: column;
     width: 100%;
 
-    margin-top: 2%;
+    margin-top: 85px;
   `,
 };

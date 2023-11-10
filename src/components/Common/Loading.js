@@ -1,13 +1,13 @@
-import loading from "../assets/Loading/loading.gif";
-import styled from "styled-components";
-import Logo from "../assets/Header/logo.png";
+import loading from '../../assets/Loading/loading.gif';
+import styled from 'styled-components';
+import Logo from '../../assets/Header/logo.png';
 
 const Loading = () => {
   return (
     <>
       <GIF
         src={Logo}
-        style={{ width: "100px", position: "absolute", top: 30, left: 30 }}
+        style={{ width: '100px', position: 'absolute', top: 30, left: 30 }}
       />
       <Container>
         <GIF src={loading} />
