@@ -2,10 +2,12 @@ import { Button, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { postLink } from '../../api/Main/postLink';
+import { useNavigate } from 'react-router-dom';
 
 export default function MainContent() {
   const [link, setLink] = useState('');
   const [isLinkValid, setIsLinkValid] = useState(true);
+  const navigate = useNavigate();
 
   const onChangeLink = ({ target }) => {
     setLink(target.value);
@@ -21,7 +23,13 @@ export default function MainContent() {
 
   const onSendUrl = async () => {
     if (isValidUrl(link)) {
-      await postLink(link);
+      const url = await postLink(link);
+
+      navigate('/checkResult', {
+        state: {
+          url: url,
+        },
+      });
     } else {
       setIsLinkValid(false);
     }

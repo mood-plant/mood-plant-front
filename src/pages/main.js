@@ -12,7 +12,7 @@ export default function Main() {
 
 const S = {
   Layout: styled.div`
-    margin-top: 10%;
+    /* margin-top: 10%; */
 
     width: 100%;
     height: 100vh;
