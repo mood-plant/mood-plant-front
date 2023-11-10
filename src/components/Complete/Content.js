@@ -32,12 +32,12 @@ export default function Content() {
         </Typography>
 
         <div>
-          <img src={googleImage} alt='구글스토어' width='150px' height='50px' />
+          <img src={googleImage} alt='구글스토어' width='150px' height='52px' />
           <img
             src={appStoreImage}
             alt='애플스토어'
             width='150px'
-            height='48px'
+            height='50px'
           />
         </div>
 

@@ -105,8 +105,8 @@ export default function Content() {
     }
 
     const payload = {
-      keywords: selectedKeywords.map((kw) => kw.en),
-      characters: selectedCharacters.map((char) => char.en),
+      spaceConditions: selectedKeywords.map((kw) => kw.en),
+      voiceAndTones: selectedCharacters.map((char) => char.en),
       themes: selectedThemes.map((theme) => theme.en),
     };
 
