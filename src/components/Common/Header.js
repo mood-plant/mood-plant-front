@@ -1,30 +1,34 @@
-import styled from "styled-components";
-import right from "../../assets/Header/right.png";
-import close from "../../assets/Header/close.png";
-import logo from "../../assets/Header/logo.png";
-import { useNavigate } from "react-router-dom";
+import styled from 'styled-components';
+import right from '../../assets/Header/right.png';
+import close from '../../assets/Header/close.png';
+import logo from '../../assets/Header/logo.png';
+import { useNavigate } from 'react-router-dom';
 
 export default function Header({ number }) {
   const navigate = useNavigate();
 
   const navigateHome = () => {
-    navigate("/");
+    navigate('/');
   };
 
   return (
     <>
       <S.Container>
         <S.Logo src={logo} onClick={navigateHome} />
-        <S.ProgressContainer>
-          <S.Progress highlight={number === "1"}>결과 확인</S.Progress>
-          <S.Arrow src={right} />
-          <S.Progress highlight={number === "2"}>상품 선택</S.Progress>
-          <S.Arrow src={right} />
-          <S.Progress highlight={number === "3"}>확인 및 결제</S.Progress>
-        </S.ProgressContainer>
-        <S.Close src={close} onClick={navigateHome} />
+        {number !== '0' && (
+          <>
+            <S.ProgressContainer>
+              <S.Progress highlight={number === '1'}>결과 확인</S.Progress>
+              <S.Arrow src={right} />
+              <S.Progress highlight={number === '2'}>상품 선택</S.Progress>
+              <S.Arrow src={right} />
+              <S.Progress highlight={number === '3'}>확인 및 결제</S.Progress>
+            </S.ProgressContainer>
+            <S.Close src={close} onClick={navigateHome} />
+          </>
+        )}
       </S.Container>
-      <S.Line />
+      {number !== '0' && <S.Line />}
     </>
   );
 }
@@ -53,9 +57,9 @@ const S = {
     align-items: center;
   `,
   Progress: styled.p`
-    color: ${(props) => (props.highlight ? "#000000" : "#888888")};
+    color: ${(props) => (props.highlight ? '#000000' : '#888888')};
     font-weight: ${(props) => (props.highlight ? 700 : 400)};
-    text-decoration: ${(props) => (props.highlight ? "underline" : "none")};
+    text-decoration: ${(props) => (props.highlight ? 'underline' : 'none')};
     font-size: 20px;
   `,
   Arrow: styled.img`
