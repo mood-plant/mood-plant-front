@@ -4,22 +4,38 @@ import styled from 'styled-components';
 import {
   themeKeywords,
   voiceToneKeywords,
-  plantConditionKeywords,
+  spaceConditionKeywords,
 } from '../../constants/keyword';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { putTags } from '../../api/checkResult/putTags';
+import { getResult } from '../../api/checkResult/getResult';
 
 export default function Content() {
   const navigate = useNavigate();
-  // const location = useLocation();
-  // const url = location.state.url;
-  // const url =
+  const location = useLocation();
+  const url = location.state?.url;
 
-  const originData = {
-    keywords: ['Low Light Tolerant'],
-    characters: ['Energetic', 'Professional'],
-    recommendThemes: ['Spring Renewal', 'Winter Solace'],
-  };
+  const [originData, setOriginData] = useState({
+    keywords: [],
+    characters: [],
+    recommendThemes: [],
+  });
+
+  useEffect(() => {
+    const getData = async () => {
+      const data = await getResult(url);
+
+      setOriginData({
+        keywords: data.keywords,
+        characters: data.characters,
+        recommendThemes: data.recommendThemes,
+      });
+    };
+
+    if (url) {
+      getData();
+    }
+  }, [url]);
 
   const findKeywordObjectByEnglish = (englishKeyword, keywordsArray) => {
     const keywordObject = keywordsArray.find((k) => k.en === englishKeyword);
@@ -29,7 +45,7 @@ export default function Content() {
 
   const [selectedKeywords, setSelectedKeywords] = useState(
     originData.keywords.map(
-      (k) => findKeywordObjectByEnglish(k, plantConditionKeywords) || {}
+      (k) => findKeywordObjectByEnglish(k, spaceConditionKeywords) || {}
     )
   );
 
@@ -124,7 +140,7 @@ export default function Content() {
           <Autocomplete
             multiple
             id='tags-keywords'
-            options={plantConditionKeywords}
+            options={spaceConditionKeywords}
             getOptionLabel={(option) => option.ko}
             value={selectedKeywords}
             onChange={handleKeywordsChange}

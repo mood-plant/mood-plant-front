@@ -1,4 +1,4 @@
-export const plantConditionKeywords = [
+export const spaceConditionKeywords = [
   { en: 'Hardwood Companion', ko: '목재와 잘 어울리는' },
   { en: 'High Humidity Thrivers', ko: '고습도 생존자' },
   { en: 'Low Light Tolerant', ko: '저조도 내성' },

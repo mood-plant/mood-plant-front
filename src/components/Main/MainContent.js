@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { postLink } from '../../api/Main/postLink';
 import { useNavigate } from 'react-router-dom';
 import Cards from './Cards';
+import Images from './Images';
 
 export default function MainContent() {
   const [link, setLink] = useState('');
@@ -92,7 +93,7 @@ export default function MainContent() {
           시작하기
         </Button>
       </div>
-
+      <Images />
       <S.CardLayout>
         <Cards />
       </S.CardLayout>
