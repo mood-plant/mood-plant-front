@@ -1,19 +1,26 @@
-const fontSize = {};
-const fontWeight = {};
-const color = {
-  lightGray: '#E1E1E1',
-  darkGray: '#8D8D8D',
-  semiGray: '#EDEDED',
-  white: '#FFFFFF',
-  mainColor: '#18436B',
-};
-const margin = {};
+// const color = {
+//   gray: '#EAEAEA',
+//   warnInside: '#FFE3E3',
+//   warnOutside: '#FF2121',
+//   white: '#FFFFFF',
+//   main: '#1A4346',
+//   back: '#DBE3DE',
+// };
 
-const theme = {
-  fontSize,
-  fontWeight,
-  color,
-  margin,
-};
+// const theme = {
+//   color,
+// };
+
+// export default theme;
+
+import { createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#1A4346',
+    },
+  },
+});
 
 export default theme;
