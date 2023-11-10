@@ -12,17 +12,20 @@ export default function Header({ number }) {
   };
 
   return (
-    <S.Container>
-      <S.Logo src={logo} onClick={navigateHome} />
-      <S.ProgressContainer>
-        <S.Progress highlight={number === "1"}>결과 확인</S.Progress>
-        <S.Arrow src={right} />
-        <S.Progress highlight={number === "2"}>상품 선택</S.Progress>
-        <S.Arrow src={right} />
-        <S.Progress highlight={number === "3"}>확인 및 결제</S.Progress>
-      </S.ProgressContainer>
-      <S.Close src={close} onClick={navigateHome} />
-    </S.Container>
+    <>
+      <S.Container>
+        <S.Logo src={logo} onClick={navigateHome} />
+        <S.ProgressContainer>
+          <S.Progress highlight={number === "1"}>결과 확인</S.Progress>
+          <S.Arrow src={right} />
+          <S.Progress highlight={number === "2"}>상품 선택</S.Progress>
+          <S.Arrow src={right} />
+          <S.Progress highlight={number === "3"}>확인 및 결제</S.Progress>
+        </S.ProgressContainer>
+        <S.Close src={close} onClick={navigateHome} />
+      </S.Container>
+      <S.Line />
+    </>
   );
 }
 
@@ -33,11 +36,17 @@ const S = {
     justify-content: space-between;
     padding-left: 48px;
     padding-right: 48px;
-    padding-top: 48px;
+    padding-top: 25px;
   `,
   Logo: styled.img`
     width: 120px;
     cursor: pointer;
+  `,
+  Line: styled.div`
+    width: 100vw;
+    height: 1px;
+    background-color: #a6c3b1;
+    margin-top: 25px;
   `,
   ProgressContainer: styled.div`
     display: flex;
