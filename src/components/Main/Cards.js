@@ -1,6 +1,8 @@
 import { Typography } from '@mui/material';
 import styled from 'styled-components';
 import card1 from '../../assets/Main/card1.png';
+import card2 from '../../assets/Main/card2.png';
+import card3 from '../../assets/Main/card3.png';
 
 export default function Cards() {
   return (
@@ -43,8 +45,9 @@ export default function Cards() {
           </S.Text>
         </S.Conetnt>
       </S.Card>
+
       <S.Card>
-        <S.Img src={card1} alt='첫번째 카드' width='100%' />
+        <S.Img src={card2} alt='두번째 카드' width='100%' />
         <S.Conetnt>
           <S.Tilte>
             <Typography
@@ -82,7 +85,7 @@ export default function Cards() {
         </S.Conetnt>
       </S.Card>
       <S.Card>
-        <S.Img src={card1} alt='첫번째 카드' width='100%' />
+        <S.Img src={card3} alt='세번째 카드' width='100%' />
         <S.Conetnt>
           <S.Tilte>
             <Typography
@@ -137,6 +140,8 @@ const S = {
     top: 0;
     border-top-right-radius: 50px;
     border-top-left-radius: 50px;
+
+    opacity: 70%;
   `,
 
   Card: styled.div`
@@ -152,6 +157,7 @@ const S = {
     background: rgba(255, 255, 255, 0.4);
     position: relative;
   `,
+
   Conetnt: styled.div`
     padding: 0 3%;
     margin-top: 35px;

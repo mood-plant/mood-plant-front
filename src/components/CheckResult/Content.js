@@ -204,6 +204,7 @@ export default function Content() {
           width: '300px',
           fontSize: '20px',
           marginTop: '25px',
+          borderRadius: '20px',
         }}
       >
         수정 완료

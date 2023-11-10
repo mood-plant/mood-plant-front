@@ -1,4 +1,4 @@
-import { Button, TextField, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { postLink } from '../../api/Main/postLink';
@@ -8,36 +8,22 @@ import Images from './Images';
 
 export default function MainContent() {
   const [link, setLink] = useState('');
-  const [isLinkValid, setIsLinkValid] = useState(true);
   const navigate = useNavigate();
 
-  const onChangeLink = ({ target }) => {
-    setLink(target.value);
-    setIsLinkValid(true);
-  };
-
-  const isValidUrl = (string) => {
-    var res = string.match(
-      /(http|https):\/\/(\w+:?\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
-    );
-    return res !== null;
+  const onChangeLink = (event) => {
+    setLink(event.target.value);
   };
 
   const onSendUrl = async () => {
-    if (isValidUrl(link)) {
-      const url = await postLink(link);
+    const url = await postLink(link);
 
-      navigate('/checkResult', {
-        state: {
-          url: url,
-        },
-      });
-    } else {
-      setIsLinkValid(false);
-    }
+    navigate('/checkResult', {
+      state: {
+        url: url,
+      },
+    });
   };
 
-  // Handler for the Enter key press
   const handleKeyPress = async (event) => {
     if (event.key === 'Enter') {
       await onSendUrl();
@@ -66,33 +52,44 @@ export default function MainContent() {
         플렌테리어를 통해 공간을 업그레이드하고 더 많은 방문객들을 모으세요.
       </Typography>
 
-      <div>
-        <TextField
-          error={!isLinkValid}
-          helperText={!isLinkValid && 'URL 형식으로 작성해주세요'}
-          id='outlined-basic'
-          variant='outlined'
-          placeholder='https://beanbrothers.com'
-          value={link}
-          onChange={onChangeLink}
-          onKeyPress={handleKeyPress}
-          sx={{ width: '640px' }}
-        />
+      <S.URL>
+        <S.InputWrapper>
+          <input
+            type='text'
+            placeholder='https://beanbrothers.com'
+            value={link}
+            onChange={onChangeLink}
+            onKeyPress={handleKeyPress}
+            style={{
+              width: '640px',
+              borderRadius: '20px',
+              border: '2px solid #808080',
+              background: '#FAFAFA',
+              height: '60px',
+              outline: 0,
+              fontSize: '20px',
+              paddingLeft: '20px',
+            }}
+          />
 
-        <Button
-          onClick={onSendUrl}
-          variant='contained'
-          color='primary'
-          sx={{
-            height: '55px',
-            marginLeft: '23px',
-            width: '200px',
-            fontSize: '20px',
-          }}
-        >
-          시작하기
-        </Button>
-      </div>
+          <button
+            onClick={onSendUrl}
+            style={{
+              height: '60px',
+              marginLeft: '23px',
+              width: '200px',
+              fontSize: '20px',
+              borderRadius: '20px',
+              background: '#1A4346',
+              outline: 0,
+              border: '2px solid #1A4346',
+              color: 'white',
+            }}
+          >
+            시작하기
+          </button>
+        </S.InputWrapper>
+      </S.URL>
       <Images />
       <S.CardLayout>
         <Cards />
@@ -108,10 +105,22 @@ const S = {
     align-items: center;
     flex-direction: column;
 
-    margin-top: 45px;
+    margin-top: 100px;
   `,
 
   CardLayout: styled.div`
     margin-top: 45px;
+  `,
+
+  InputWrapper: styled.div`
+    display: flex;
+    align-items: center;
+  `,
+
+  URL: styled.div`
+    display: flex;
+    height: '50px';
+    flex-direction: column;
+    margin-bottom: 20px;
   `,
 };
