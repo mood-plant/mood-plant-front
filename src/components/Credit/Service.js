@@ -20,6 +20,7 @@ const Service = () => {
   return (
     <>
       <Container>
+        <Toaster />
         <BG>
           <Header>
             <Logo src={appLogo} />

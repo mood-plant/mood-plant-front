@@ -1,15 +1,15 @@
-import { Typography } from '@mui/material';
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { postLink } from '../../api/Main/postLink';
-import { useNavigate } from 'react-router-dom';
-import Cards from './Cards';
-import Images from './Images';
-import Loading from '../Common/Loading';
-import LogoHeader from '../Common/LogoHeader';
+import { Typography } from "@mui/material";
+import React, { useState } from "react";
+import styled from "styled-components";
+import { postLink } from "../../api/Main/postLink";
+import { useNavigate } from "react-router-dom";
+import Cards from "./Cards";
+import Images from "./Images";
+import Loading from "../Common/Loading";
+import LogoHeader from "../Common/LogoHeader";
 
 export default function MainContent() {
-  const [link, setLink] = useState('');
+  const [link, setLink] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -17,24 +17,51 @@ export default function MainContent() {
     setLink(event.target.value);
   };
 
+  // https://www.josunhotel.com/intro.do
+  const mockdata = [
+    {
+      voiceAndTones: ["Professional", "Elegant", "Confident"],
+      spaceConditions: ["Small Spaces", "Large Spaces", "Minimalist Decor"],
+    },
+  ];
+
+  // simulate response
+  const response = {
+    status: 200,
+    headers: {
+      Location: "/checkResult",
+    },
+    data: mockdata,
+  };
+
   const onSendUrl = async () => {
     setIsLoading(true);
 
-    const response = await postLink(link);
+    // wait for 6 seconds
+    await new Promise((resolve) => setTimeout(resolve, 8000));
 
-    if (response.status === 201 && response.headers['Location']) {
+    navigate("/checkResult", {
+      state: {
+        url: response.headers["Location"],
+      },
+    });
+
+    // this doesn't work - i have to simulate response.
+    // const response = await postLink(link);
+
+    if (response.status === 200 && response.headers["Location"]) {
       setIsLoading(false);
 
-      navigate('/checkResult', {
+      navigate("/checkResult", {
         state: {
-          url: response.headers['Location'],
+          url: response.headers["Location"],
         },
       });
     }
   };
 
   const handleKeyPress = async (event) => {
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       await onSendUrl();
     }
   };
@@ -49,19 +76,19 @@ export default function MainContent() {
 
           <S.Layout>
             <Typography
-              variant='h3'
-              component='h3'
+              variant="h3"
+              component="h3"
               sx={{
                 fontWeight: 700,
-                marginBottom: '10px',
+                marginBottom: "10px",
               }}
             >
               내 공간을 더 특별하게
             </Typography>
             <Typography
-              variant='subtitle1'
-              component='div'
-              sx={{ fontWeight: 500, marginBottom: '100px' }}
+              variant="subtitle1"
+              component="div"
+              sx={{ fontWeight: 500, marginBottom: "100px" }}
             >
               감성플랜트는 당신의 공간에 최적화된 조경식물들을 제안합니다.
               <br />
@@ -72,35 +99,36 @@ export default function MainContent() {
             <S.URL>
               <S.InputWrapper>
                 <input
-                  type='text'
-                  placeholder='https://beanbrothers.com'
+                  type="text"
+                  placeholder="https://beanbrothers.com"
                   value={link}
                   onChange={onChangeLink}
                   onKeyPress={handleKeyPress}
                   style={{
-                    width: '640px',
-                    borderRadius: '20px',
-                    border: '2px solid #808080',
-                    background: '#FAFAFA',
-                    height: '60px',
+                    width: "640px",
+                    borderRadius: "20px",
+                    border: "2px solid #808080",
+                    background: "#FAFAFA",
+                    height: "60px",
                     outline: 0,
-                    fontSize: '20px',
-                    paddingLeft: '20px',
+                    fontSize: "20px",
+                    paddingLeft: "20px",
                   }}
                 />
 
                 <button
                   onClick={onSendUrl}
                   style={{
-                    height: '60px',
-                    marginLeft: '23px',
-                    width: '200px',
-                    fontSize: '20px',
-                    borderRadius: '20px',
-                    background: '#1A4346',
+                    height: "60px",
+                    marginLeft: "23px",
+                    width: "200px",
+                    fontSize: "20px",
+                    borderRadius: "20px",
+                    background: "#1A4346",
                     outline: 0,
-                    border: '2px solid #1A4346',
-                    color: 'white',
+                    border: "2px solid #1A4346",
+                    color: "white",
+                    cursor: "pointer",
                   }}
                 >
                   시작하기
@@ -139,7 +167,7 @@ const S = {
 
   URL: styled.div`
     display: flex;
-    height: '50px';
+    height: "50px";
     flex-direction: column;
     margin-bottom: 20px;
   `,

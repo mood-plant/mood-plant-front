@@ -13,7 +13,6 @@ export default function Guide({ guide, theme }) {
   const [plants, setPlants] = React.useState([]);
   const [themes, setThemes] = React.useState([]);
 
-  console.log(themes);
   const navigate = useNavigate();
 
   const handleChange = (panel) => (event, isExpanded) => {
@@ -176,17 +175,18 @@ export default function Guide({ guide, theme }) {
             <AccordionDetails>
               <Typography>
                 <CardContainer>
-                  {theme.map((item) => (
-                    <PlantCard
-                      name={item.name}
-                      price={item.price}
-                      img={item.image}
-                      description={item.description}
-                      setPlants={setThemes}
-                      plants={themes}
-                      data={item}
-                    />
-                  ))}
+                  {theme &&
+                    theme.map((item) => (
+                      <PlantCard
+                        name={item.name}
+                        price={item.price}
+                        img={item.image}
+                        description={item.description}
+                        setPlants={setThemes}
+                        plants={themes}
+                        data={item}
+                      />
+                    ))}
                 </CardContainer>
               </Typography>
             </AccordionDetails>
