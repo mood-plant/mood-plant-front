@@ -115,7 +115,7 @@ export default function Content() {
         component='div'
         sx={{ fontWeight: 400, marginBottom: '25px', color: '#636363' }}
       >
-        웹 사이트 탐색 완료!
+        목적에 맞게 결과를 수정해주세요.
       </Typography>
 
       <S.Container>

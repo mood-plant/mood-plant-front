@@ -6,6 +6,7 @@ import { StyledEngineProvider } from '@mui/styled-engine';
 import Main from './pages/Main';
 import SelectItem from './pages/SelectItem';
 import CheckResult from './pages/CheckResult';
+import Complete from './pages/Complete';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route path={'/selectItem'} element={<SelectItem />} />
             <Route path={'/'} element={<Main />} />
             <Route path={'/checkResult'} element={<CheckResult />} />
+            <Route path={'/complete'} element={<Complete />} />
           </Routes>
         </div>
       </ThemeProvider>
