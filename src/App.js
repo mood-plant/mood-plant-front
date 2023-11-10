@@ -8,8 +8,6 @@ import SelectItem from "./pages/SelectItem";
 import CheckResult from "./pages/CheckResult";
 import Complete from "./pages/Complete";
 import Credit from "./pages/Credit";
-import Loading from "./pages/Loading";
-import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
@@ -22,7 +20,6 @@ function App() {
             <Route path={"/checkResult"} element={<CheckResult />} />
             <Route path={"/complete"} element={<Complete />} />
             <Route path={"/credit"} element={<Credit />} />
-            <Route path={"/loading"} element={<Loading />} />
           </Routes>
         </div>
       </ThemeProvider>
