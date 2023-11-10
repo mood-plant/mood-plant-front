@@ -10,7 +10,7 @@ export default function Selecter({ setPlants, plants, data }) {
     const selectedAmount = event.target.value;
     setAge(selectedAmount);
 
-    const plantIndex = plants.findIndex((plant) => plant.id === data.id);
+    const plantIndex = plants.findIndex((plant) => plant.name === data.name);
 
     if (plantIndex !== -1) {
       const updatedPlants = [...plants];

@@ -13,6 +13,7 @@ export default function Guide({ guide, theme }) {
   const [plants, setPlants] = React.useState([]);
   const [themes, setThemes] = React.useState([]);
 
+  console.log(themes);
   const navigate = useNavigate();
 
   const handleChange = (panel) => (event, isExpanded) => {
@@ -98,7 +99,7 @@ export default function Guide({ guide, theme }) {
                 marginRight: "10px",
               }}
             >
-              {plants.reduce((acc, cur) => acc + cur.amount, 0)}개 선택
+              {plants.reduce((acc, cur) => acc + Number(cur.amount), 0)}개 선택
             </Typography>
           )}
         </AccordionSummary>
@@ -118,7 +119,7 @@ export default function Guide({ guide, theme }) {
           </CardContainer>
         </AccordionDetails>
       </Accordion>
-      {plants.reduce((acc, cur) => acc + cur.amount, 0) > 0 && (
+      {plants.reduce((acc, cur) => acc + Number(cur.amount), 0) > 0 && (
         <>
           <Accordion
             expanded={expanded === "panel2"}
@@ -149,7 +150,7 @@ export default function Guide({ guide, theme }) {
               >
                 테마 상품
               </Typography>
-              {themes.reduce((acc, cur) => acc + cur.amount, 0) > 0 && (
+              {themes.reduce((acc, cur) => acc + Number(cur.amount), 0) > 0 && (
                 <Typography
                   sx={{
                     color: "black",
@@ -167,7 +168,8 @@ export default function Guide({ guide, theme }) {
                     marginRight: "10px",
                   }}
                 >
-                  {themes.reduce((acc, cur) => acc + cur.amount, 0)}개 선택
+                  {themes.reduce((acc, cur) => acc + Number(cur.amount), 0)}개
+                  선택
                 </Typography>
               )}
             </AccordionSummary>

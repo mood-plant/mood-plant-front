@@ -6,6 +6,7 @@ import { StyledEngineProvider } from "@mui/styled-engine";
 import Main from "./pages/Main";
 import SelectItem from "./pages/SelectItem";
 import Credit from "./pages/Credit";
+import Loading from "./pages/Loading";
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
           </Routes>
           <Routes>
             <Route path={"/credit"} element={<Credit />} />
+          </Routes>
+          <Routes>
+            <Route path={"/loading"} element={<Loading />} />
           </Routes>
         </div>
       </ThemeProvider>
