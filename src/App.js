@@ -5,6 +5,7 @@ import theme from "./style/theme";
 import { StyledEngineProvider } from "@mui/styled-engine";
 import Main from "./pages/Main";
 import SelectItem from "./pages/SelectItem";
+import Credit from "./pages/Credit";
 
 function App() {
   return (
@@ -16,6 +17,9 @@ function App() {
           </Routes>
           <Routes>
             <Route path={"/selectItem"} element={<SelectItem />} />
+          </Routes>
+          <Routes>
+            <Route path={"/credit"} element={<Credit />} />
           </Routes>
         </div>
       </ThemeProvider>
