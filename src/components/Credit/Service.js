@@ -1,26 +1,39 @@
 import styled from "styled-components";
 import appLogo from "../../assets/Credit/appLogo.png";
 import arrow from "../../assets/Credit/down.png";
+import check from "../../assets/Credit/check.png";
+import { useState } from "react";
 
 const Service = () => {
+  const [checked, setChecked] = useState(false);
+  const navigateToExternalURL = () => {
+    window.location.href = "https://geekfriends.co.kr/";
+  };
+
   return (
     <Container>
       <BG>
         <Header>
           <Logo src={appLogo} />
           <Title>플랜테리어 3개월 관리 서비스</Title>
-          <Plus>추가 +</Plus>
+          <Plus onClick={() => setChecked(!checked)}>
+            추가 {checked ? <Check src={check} /> : "+"}
+          </Plus>
         </Header>
         <Summary>
           3개월 동안 습도관리 시스템소프트웨어를 통해 효율적으로 관리하세요.
         </Summary>
-        <More>
+        <More onClick={navigateToExternalURL}>
           더 알아보기 <DecreasArrow src={arrow} />
         </More>
       </BG>
     </Container>
   );
 };
+
+const Check = styled.img`
+  width: 30px;
+`;
 
 const DecreasArrow = styled.img`
   width: 30px;
@@ -51,6 +64,7 @@ const Plus = styled.h2`
   margin-top: 10px;
   margin-bottom: 10px;
   cursor: pointer;
+  display: flex;
 `;
 
 const Logo = styled.img`
