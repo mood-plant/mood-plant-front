@@ -111,7 +111,7 @@ export default function Content() {
       themes: selectedThemes.map((theme) => theme.en),
     };
 
-    sendApiRequest(payload);
+    sendApiRequest(payload, url);
   };
 
   const handleCharactersChange = (event, value) => {
