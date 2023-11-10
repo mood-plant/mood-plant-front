@@ -20,15 +20,17 @@ export default function MainContent() {
   const onSendUrl = async () => {
     setIsLoading(true);
 
-    const url = await postLink(link);
+    const response = await postLink(link);
 
-    setIsLoading(false);
+    if (response.status === 201 && response.headers['Location']) {
+      setIsLoading(false);
 
-    navigate('/checkResult', {
-      state: {
-        url: url,
-      },
-    });
+      navigate('/checkResult', {
+        state: {
+          url: response.headers['Location'],
+        },
+      });
+    }
   };
 
   const handleKeyPress = async (event) => {

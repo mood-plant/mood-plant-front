@@ -7,7 +7,7 @@ export const postLink = (url) => {
     });
 
     if (res.statusCode === 201) {
-      return res.headers['Location'];
+      return res;
     }
   } catch (err) {
     throw err;
