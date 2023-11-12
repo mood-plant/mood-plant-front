@@ -57,7 +57,7 @@
 ## 👥 팀원 소개
 |FE|FE|
 |---|---|
-||<img width="150" src="https://avatars.githubusercontent.com/u/104717341?v=4" />|
+| ![](https://github.com/y00eunji.png?size=150)|<img width="150" src="https://avatars.githubusercontent.com/u/104717341?v=4" />|
 |유은지|이주희|
 |메인 페이지 <br> 결과 확인 페이지  <br> 결제 완료 페이지|로딩 페이지  <br> 상품 선택 페이지  <br> 확인 및 결제 페이지|
 
